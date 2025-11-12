@@ -51,12 +51,17 @@ public class CommentRepository : ICommentRepository
     public async Task<bool> DeleteCommentAsync(int id)
     {
         var comment = await _context.Comments.FindAsync(id);
-        if (comment == null) 
+        if (comment == null)
         {
-            return false; 
+            return false;
         }
         _context.Comments.Remove(comment);
         await _context.SaveChangesAsync();
         return true;
+    }
+    
+    public async Task<bool> ExistsCommentAsync(int id)
+    {
+        return await _context.Comments.AnyAsync(c => c.Id == id);
     }
 }

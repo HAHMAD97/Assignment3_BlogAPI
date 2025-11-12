@@ -3,7 +3,7 @@ using BlogAPI.Core.Models;
 namespace BlogAPI.Core.DTOs
 
 {
-    public class PostCreateDTO
+    public class PostCreateDto
     {
         [Required(ErrorMessage = "Title is required")]
         [StringLength(200, ErrorMessage = "Title cannot exceed 200 characters")]

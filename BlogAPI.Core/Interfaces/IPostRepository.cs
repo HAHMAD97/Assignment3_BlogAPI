@@ -8,4 +8,5 @@ public interface IPostRepository
     Task<Post> CreatePostAsync(Post post);
     Task<Post?> UpdatePostAsync(Post post);
     Task<bool> DeletePostAsync(int id);
+    Task<bool> ExistsPostAsync(int id);
 }

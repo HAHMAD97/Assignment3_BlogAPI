@@ -56,4 +56,8 @@ public class PostRepository : IPostRepository
         await _context.SaveChangesAsync();
         return existingPost;
     }
+    public async Task<bool> ExistsPostAsync(int id)
+    {
+        return await _context.Posts.AnyAsync(p => p.Id == id);
+    }
 }
