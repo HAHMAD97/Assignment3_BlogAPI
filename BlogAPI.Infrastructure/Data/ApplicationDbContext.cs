@@ -20,7 +20,7 @@ public class ApplicationDbContext : DbContext
             entity.Property(e => e.Content).HasMaxLength(1000);
             entity.Property(e => e.Author).IsRequired();
             entity.Property(e => e.CreatedDate).IsRequired();
-            entity.Property(e => e.UpdatedDate).IsRequired();
+            entity.Property(e => e.UpdatedDate);
             entity.HasMany(e => e.Comments)
                   .WithOne(c => c.Post)
                   .HasForeignKey(c => c.PostId)
