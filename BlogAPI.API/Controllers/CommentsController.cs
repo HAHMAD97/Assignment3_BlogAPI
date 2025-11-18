@@ -22,7 +22,7 @@ public class CommentsController : ControllerBase
         return Ok(comments);
     }
 
-    [HttpGet("[controller]{id}")]
+    [HttpGet("[controller]/{id}")]
     public async Task<IActionResult> GetCommentById(int id)
     {
         var comment = await _commentRepository.GetCommentByIdAsync(id);
@@ -45,7 +45,7 @@ public class CommentsController : ControllerBase
     }
 
     [HttpPost("posts/{postId}/[controller]")]
-    public async Task<IActionResult> CreateComment([FromBody] CommentCreateDto commentDto)
+    public async Task<IActionResult> CreateComment(int postId, [FromBody] CommentCreateDto commentDto)
     {
         if (!ModelState.IsValid)
         {
@@ -53,6 +53,7 @@ public class CommentsController : ControllerBase
         }
         var comment = new Comment
         {
+            PostId = postId,
             Name = commentDto.Name,
             Email = commentDto.Email,
             Content = commentDto.Content
